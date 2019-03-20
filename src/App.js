@@ -43,7 +43,8 @@ class App extends React.Component {
       completed: false
     }
     this.setState({
-      toDoList: [...this.state.toDoList, newItem]
+      toDoList: [...this.state.toDoList, newItem],
+      task: ''
     });
   }
 
@@ -52,6 +53,11 @@ class App extends React.Component {
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoList taskList = {this.state.toDoList} />
+        <TodoForm
+          retrieveInput={this.retrieveInput}
+          updateList={this.updateList}
+          task={this.state.task}
+        />
       </div>
     );
   }
