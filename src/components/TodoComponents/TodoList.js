@@ -4,11 +4,14 @@ import React from 'react';
 import Todo from './Todo';
 
 const TodoList = props =>{
-    console.log("Made it to TodoList")
+    //console.log("Made it to TodoList")
     return(
         <ul className="listContainer">
             {props.taskList.map(element =>(
-                <Todo listItem={element}/>
+                <Todo 
+                    listItem={element}
+                    markComplete={props.markComplete}
+                />
             ))}
         </ul>
     )
