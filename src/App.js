@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import SearchForm from './components/SearchComponents/SearchForm';
 
 const toDo = []
 
@@ -11,14 +12,16 @@ class App extends React.Component {
 
     this.state = {
       toDoList: toDo,
-      task: ''
+      task: '',
+      searched: [],
+      search: ''
     }
   }
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
 
   retrieveInput = event =>{
-    //console.log("Retrieving Input ", event.target.value);
+    console.log(event.target.value);
     this.setState({
       task: event.target.value
     })
@@ -35,6 +38,19 @@ class App extends React.Component {
       toDoList: [...this.state.toDoList, newItem],
       task: ''
     });
+  }
+
+  //Day 1 Stretch: search
+  searchList = event =>{
+    console.log(`searching for ${event.target.value}`);
+
+
+    const searchedItems = this.state.toDoList.filter(x => x.task.includes(event.target.value));
+    this.setState({
+      search: event.target.value,
+      searched: searchedItems
+    })
+    console.log(this.state.search);
   }
 
   //Day 2 functionality below:
@@ -64,6 +80,9 @@ class App extends React.Component {
     event.preventDefault();
     const incomplete = this.state.toDoList.filter(element => !element.completed);
     console.log(incomplete);
+    document.querySelectorAll('li').forEach(x=>{
+      x.style.textDecoration = "none";
+    })
     this.setState({
       toDoList: incomplete
     })
@@ -83,6 +102,18 @@ class App extends React.Component {
           task={this.state.task}
           deleteCompleted={this.deleteCompleted}
         />
+
+        <SearchForm
+          searchList = {this.searchList}
+          search={this.state.search} 
+        />
+
+        <TodoList
+          taskList = {this.state.searched}
+          markComplete={this.markComplete}
+        />
+
+
       </div>
     );
   }
