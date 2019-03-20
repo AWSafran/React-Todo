@@ -60,6 +60,15 @@ class App extends React.Component {
 
   }
 
+  deleteCompleted = event =>{
+    event.preventDefault();
+    const incomplete = this.state.toDoList.filter(element => !element.completed);
+    console.log(incomplete);
+    this.setState({
+      toDoList: incomplete
+    })
+  }
+
   render() {
     return (
       <div>
@@ -72,6 +81,7 @@ class App extends React.Component {
           retrieveInput={this.retrieveInput}
           updateList={this.updateList}
           task={this.state.task}
+          deleteCompleted={this.deleteCompleted}
         />
       </div>
     );
