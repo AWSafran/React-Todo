@@ -64,12 +64,14 @@ class App extends React.Component {
         if(element.completed){
           console.log("The element will be marked incomplete")
           element.completed = false;
-          event.target.style.textDecoration = 'none';
+          event.target.classList.remove('clicked')
+          //event.target.style.textDecoration = 'none';
         }
         else{
           console.log("The element will be marked completed")
           element.completed = true;
-          event.target.style.textDecoration = 'line-through';
+          event.target.classList.add('clicked')
+          //event.target.style.textDecoration = 'line-through';
         }
       }
     })
@@ -81,7 +83,7 @@ class App extends React.Component {
     const incomplete = this.state.toDoList.filter(element => !element.completed);
     console.log(incomplete);
     document.querySelectorAll('li').forEach(x=>{
-      x.style.textDecoration = "none";
+      x.classList.remove('clicked');
     })
     this.setState({
       toDoList: incomplete
@@ -92,15 +94,17 @@ class App extends React.Component {
     return (
       <div>
         <h1>Welcome to your Todo App!</h1>
-        <TodoList 
-          taskList = {this.state.toDoList} 
-          markComplete={this.markComplete}
-        />
+
         <TodoForm
           retrieveInput={this.retrieveInput}
           updateList={this.updateList}
           task={this.state.task}
           deleteCompleted={this.deleteCompleted}
+        />
+
+        <TodoList 
+          taskList = {this.state.toDoList} 
+          markComplete={this.markComplete}
         />
 
         <SearchForm
