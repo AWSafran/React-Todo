@@ -42,10 +42,13 @@ class App extends React.Component {
 
   //Day 1 Stretch: search
   searchList = event =>{
-    console.log(`searching for ${event.target.value}`);
+    //console.log(`searching for ${event.target.value}`);
 
 
-    const searchedItems = this.state.toDoList.filter(x => x.task.includes(event.target.value));
+    let searchedItems = this.state.toDoList.filter(x => x.task.includes(event.target.value));
+    if (event.target.value === ''){
+      searchedItems = [];
+    }
     this.setState({
       search: event.target.value,
       searched: searchedItems
