@@ -88,6 +88,13 @@ li{
     border-radius: 4px;
 }
 
+@media (max-width: 500px){
+    li{
+        min-height: 80px;
+        padding: 5%;
+    }
+}
+
 input{
     border: 1px solid #e6e6e6;
     width: 95%;
@@ -108,6 +115,13 @@ button{
     border-radius: 4px;
     padding: 1%;
     min-height: 40px;
+}
+
+@media (max-width: 500px){
+    button{
+        height: 80px;
+        
+    }
 }
 
 .clicked{
